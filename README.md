@@ -65,6 +65,7 @@ from foo.bar import module
 from foo.bat import aa, bb
 from foo.bat.aa import test as t
 from foo.bas import *
+import foo.bar.module
 ```
 ---
 ## Supported import transport
@@ -77,7 +78,7 @@ HTTP/HTTPS, SMB
 1. Response with python obj(class, method function, etc) data must contain
 "Content-type" header:
 ```python
-text/plain
+Content-type: text/plain
 ```
 2. When mask import is used, You must add index.html in package dir
 on the similarity of the file ```"__init__"```, For example:
@@ -85,6 +86,10 @@ on the similarity of the file ```"__init__"```, For example:
 index.html
 
 __all__ = ["a_aa", "a_bb"]
+```
+In this case response must contain "Content-type" header:
+```python
+Content-type: text/html
 ```
 
 For tests use simple http server:
